@@ -1,0 +1,43 @@
+=== Event 0 ===
+Event Name: PROCESS_START
+Start Time: 8441082440177973
+End Time: 8441082440177973
+Duration: 0
+Record Size: 26
+=== Event 1 ===
+Event Name: MPI_Init
+Start Time: 8441082440198286
+End Time: 8441082783115812
+Duration: 342917526
+Record Size: 26
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4d063) (0x14d86d5c2063):_Z13jsi_inst_inittm [jsi_inst_init:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:195]
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4ba69) (0x14d86d5c0a69):MPI_Init [MPI_Init:/home/sx/Toolkit/JSI-Toolkit/build/lib/mpi_wrapper/mpi_wrapper.cpp:61]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+13fd) (0x564a5d1fb3fd):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14d86d244083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x564a5d1fbb7e):(null) [??:??:0]
+=== Event 2 ===
+Event Name: MPI_Irecv
+Start Time: 8441090384188344
+End Time: 8441090384199792
+Duration: 11448
+Record Size: 66
+Data type: 94877389947488
+Dest/Src: 6
+Type Size: 4
+Tag: 1000
+Count: 1
+MPI Comm: 94877402516784
+MPI Request: 94877402613120
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+2736f) (0x14d86d59c36f):MPI_Irecv [MPI_Irecv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:503]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+22a1) (0x564a5d1fc2a1):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1693) (0x564a5d1fb693):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14d86d244083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x564a5d1fbb7e):(null) [??:??:0]
+=== Event 3 ===
+Event Name: PROCESS_EXIT
+Start Time: 8441090599422099
+End Time: 8441090599422099
+Duration: 0
+Record Size: 26

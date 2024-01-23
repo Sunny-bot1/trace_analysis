@@ -1,0 +1,721 @@
+=== Event 0 ===
+Event Name: PROCESS_START
+Start Time: 8441082356570793
+End Time: 8441082356570793
+Duration: 0
+Record Size: 26
+=== Event 1 ===
+Event Name: MPI_Init
+Start Time: 8441082356589627
+End Time: 8441082777883260
+Duration: 421293633
+Record Size: 26
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4d063) (0x14606e989063):_Z13jsi_inst_inittm [jsi_inst_init:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:195]
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4ba69) (0x14606e987a69):MPI_Init [MPI_Init:/home/sx/Toolkit/JSI-Toolkit/build/lib/mpi_wrapper/mpi_wrapper.cpp:61]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+13fd) (0x558d99a413fd):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 2 ===
+Event Name: MPI_Comm_rank
+Start Time: 8441082778976751
+End Time: 8441082779037291
+Duration: 60540
+Record Size: 38
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+26905) (0x14606e962905):MPI_Comm_rank [MPI_Comm_rank:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:331]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1410) (0x558d99a41410):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 3 ===
+Event Name: MPI_Comm_size
+Start Time: 8441082779123916
+End Time: 8441082779124234
+Duration: 318
+Record Size: 26
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4bdcd) (0x14606e987dcd):_Z14jsi_inst_entert [jsi_inst_enter:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:247]
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+2d1de) (0x14606e9691de):MPI_Comm_size [MPI_Comm_size:/home/sx/Toolkit/JSI-Toolkit/build/lib/mpi_wrapper/mpi_wrapper.cpp:3010]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1423) (0x558d99a41423):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 4 ===
+Event Name: MPI_Comm_dup
+Start Time: 8441082779131563
+End Time: 8441082788533704
+Duration: 9402141
+Record Size: 42
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+26aa5) (0x14606e962aa5):MPI_Comm_dup [MPI_Comm_dup:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:384]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1979) (0x558d99a41979):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 5 ===
+Event Name: MPI_Bcast
+Start Time: 8441082788624013
+End Time: 8441082788712510
+Duration: 88497
+Record Size: 54
+Data type: 94066656436832
+Count: 1
+Root: 0
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+284f5) (0x14606e9644f5):MPI_Bcast [MPI_Bcast:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:765]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1550) (0x558d99a41550):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 6 ===
+Event Name: MPI_Allreduce
+Start Time: 8441084445631722
+End Time: 8441084634430599
+Duration: 188798877
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+15b4) (0x558d99a415b4):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 7 ===
+Event Name: MPI_Alltoall
+Start Time: 8441084634578448
+End Time: 8441084648856762
+Duration: 14278314
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+15b4) (0x558d99a415b4):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 8 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441084648933328
+End Time: 8441084748755229
+Duration: 99821901
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121266
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+15b4) (0x558d99a415b4):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 9 ===
+Event Name: MPI_Wtime
+Start Time: 8441084837132934
+End Time: 8441084837146176
+Duration: 13242
+Record Size: 26
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4bdcd) (0x14606e987dcd):_Z14jsi_inst_entert [jsi_inst_enter:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:247]
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+3f104) (0x14606e97b104):MPI_Wtime [MPI_Wtime:/home/sx/Toolkit/JSI-Toolkit/build/lib/mpi_wrapper/mpi_wrapper.cpp:14857]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+301d) (0x558d99a4301d):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1606) (0x558d99a41606):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 10 ===
+Event Name: MPI_Allreduce
+Start Time: 8441085101238075
+End Time: 8441085166105257
+Duration: 64867182
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 11 ===
+Event Name: MPI_Alltoall
+Start Time: 8441085166187538
+End Time: 8441085166224612
+Duration: 37074
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 12 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441085166264650
+End Time: 8441085272353773
+Duration: 106089123
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121266
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 13 ===
+Event Name: MPI_Allreduce
+Start Time: 8441085659651211
+End Time: 8441085682715163
+Duration: 23063952
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 14 ===
+Event Name: MPI_Alltoall
+Start Time: 8441085682751184
+End Time: 8441085683828097
+Duration: 1076913
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 15 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441085683840457
+End Time: 8441085774186306
+Duration: 90345849
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121265
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 16 ===
+Event Name: MPI_Allreduce
+Start Time: 8441086137567828
+End Time: 8441086161843708
+Duration: 24275880
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 17 ===
+Event Name: MPI_Alltoall
+Start Time: 8441086161886461
+End Time: 8441086162040868
+Duration: 154407
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 18 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441086162051131
+End Time: 8441086328409264
+Duration: 166358133
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121265
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 19 ===
+Event Name: MPI_Allreduce
+Start Time: 8441086690328013
+End Time: 8441086726629891
+Duration: 36301878
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 20 ===
+Event Name: MPI_Alltoall
+Start Time: 8441086726665888
+End Time: 8441086726712730
+Duration: 46842
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 21 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441086726723215
+End Time: 8441086815432846
+Duration: 88709631
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121265
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 22 ===
+Event Name: MPI_Allreduce
+Start Time: 8441087147705313
+End Time: 8441087165401707
+Duration: 17696394
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 23 ===
+Event Name: MPI_Alltoall
+Start Time: 8441087165435898
+End Time: 8441087165569155
+Duration: 133257
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 24 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441087165580426
+End Time: 8441087235633531
+Duration: 70053105
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121265
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 25 ===
+Event Name: MPI_Allreduce
+Start Time: 8441087570473707
+End Time: 8441087671252650
+Duration: 100778943
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 26 ===
+Event Name: MPI_Alltoall
+Start Time: 8441087671293855
+End Time: 8441087674948266
+Duration: 3654411
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 27 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441087674963488
+End Time: 8441087756581692
+Duration: 81618204
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121265
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 28 ===
+Event Name: MPI_Allreduce
+Start Time: 8441088118635399
+End Time: 8441088173162748
+Duration: 54527349
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 29 ===
+Event Name: MPI_Alltoall
+Start Time: 8441088173208213
+End Time: 8441088179910132
+Duration: 6701919
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 30 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441088179940498
+End Time: 8441088269982018
+Duration: 90041520
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121265
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 31 ===
+Event Name: MPI_Allreduce
+Start Time: 8441088599804100
+End Time: 8441088623286765
+Duration: 23482665
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 32 ===
+Event Name: MPI_Alltoall
+Start Time: 8441088623319741
+End Time: 8441088623360826
+Duration: 41085
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 33 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441088623370663
+End Time: 8441088704720046
+Duration: 81349383
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121264
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 34 ===
+Event Name: MPI_Allreduce
+Start Time: 8441089055578863
+End Time: 8441089073232684
+Duration: 17653821
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 35 ===
+Event Name: MPI_Alltoall
+Start Time: 8441089073267082
+End Time: 8441089073313312
+Duration: 46230
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 36 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441089073323497
+End Time: 8441089167389208
+Duration: 94065711
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121264
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 37 ===
+Event Name: MPI_Allreduce
+Start Time: 8441089513343163
+End Time: 8441089525356705
+Duration: 12013542
+Record Size: 58
+Data type: 94066656436832
+Count: 1029
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27ef5) (0x14606e963ef5):MPI_Allreduce [MPI_Allreduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:678]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+25d2) (0x558d99a425d2):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 38 ===
+Event Name: MPI_Alltoall
+Start Time: 8441089525383882
+End Time: 8441089533330243
+Duration: 7946361
+Record Size: 54
+Data type: 94066656436832
+Send count: 1
+Recv count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+278b5) (0x14606e9638b5):MPI_Alltoall [MPI_Alltoall:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:595]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+26df) (0x558d99a426df):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 39 ===
+Event Name: MPI_Alltoallv
+Start Time: 8441089533348255
+End Time: 8441089612942332
+Duration: 79594077
+Record Size: 54
+Data type: 94066656436832
+Send count: 4194304
+Recv count: 4121264
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27c1f) (0x14606e963c1f):MPI_Alltoallv [MPI_Alltoallv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:642]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2754) (0x558d99a42754):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+161a) (0x558d99a4161a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 40 ===
+Event Name: MPI_Wtime
+Start Time: 8441089694250123
+End Time: 8441089694252745
+Duration: 2622
+Record Size: 26
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4bdcd) (0x14606e987dcd):_Z14jsi_inst_entert [jsi_inst_enter:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:247]
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+3f104) (0x14606e97b104):MPI_Wtime [MPI_Wtime:/home/sx/Toolkit/JSI-Toolkit/build/lib/mpi_wrapper/mpi_wrapper.cpp:14857]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+303c) (0x558d99a4303c):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1652) (0x558d99a41652):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 41 ===
+Event Name: MPI_Reduce
+Start Time: 8441089694300478
+End Time: 8441089724731248
+Duration: 30430770
+Record Size: 62
+Data type: 94066656441440
+Count: 1
+Root: 0
+MPI Op: 94066656439392
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+281e5) (0x14606e9641e5):MPI_Reduce [MPI_Reduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:722]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+168e) (0x558d99a4168e):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 42 ===
+Event Name: MPI_Irecv
+Start Time: 8441090176835043
+End Time: 8441090176849410
+Duration: 14367
+Record Size: 66
+Data type: 94066656436832
+Dest/Src: 3
+Type Size: 4
+Tag: 1000
+Count: 1
+MPI Comm: 94066685361200
+MPI Request: 94066685458304
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+2736f) (0x14606e96336f):MPI_Irecv [MPI_Irecv:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:503]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+22a1) (0x558d99a422a1):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1693) (0x558d99a41693):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 43 ===
+Event Name: MPI_Send
+Start Time: 8441090176915785
+End Time: 8441090176928349
+Duration: 12564
+Record Size: 58
+Data type: 94066656436832
+Dest/Src: 5
+Type Size: 4
+Tag: 1000
+Count: 1
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+3f3fa) (0x14606e97b3fa):MPI_Send [MPI_Send:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:295]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+22f4) (0x558d99a422f4):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1693) (0x558d99a41693):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 44 ===
+Event Name: MPI_Wait
+Start Time: 8441090177019912
+End Time: 8441090177032536
+Duration: 12624
+Record Size: 34
+MPI Request: 94066685458304
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+27605) (0x14606e963605):MPI_Wait [MPI_Wait:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:562]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+2319) (0x558d99a42319):(null) [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1693) (0x558d99a41693):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 45 ===
+Event Name: MPI_Reduce
+Start Time: 8441090202062652
+End Time: 8441090414726916
+Duration: 212664264
+Record Size: 62
+Data type: 94066656436832
+Count: 1
+Root: 0
+MPI Op: 94066656442464
+MPI Comm: 94066685361200
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+281e5) (0x14606e9641e5):MPI_Reduce [MPI_Reduce:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:722]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+16cc) (0x558d99a416cc):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 46 ===
+Event Name: MPI_Finalize
+Start Time: 8441090414914743
+End Time: 8441090614078245
+Duration: 199163502
+Record Size: 26
+Backtrace: 
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4bdcd) (0x14606e987dcd):_Z14jsi_inst_entert [jsi_inst_enter:/home/sx/Toolkit/JSI-Toolkit/lib/mpi_wrapper/./mpi_instrument.h:247]
+/home/sx/Toolkit/JSI-Toolkit/install/bin/libmpi_wrapper.so(+4b552) (0x14606e987552):MPI_Finalize [??:/home/sx/Toolkit/JSI-Toolkit/build/lib/mpi_wrapper/mpi_wrapper.cpp:141]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+185a) (0x558d99a4185a):(null) [??:??:0]
+/lib/x86_64-linux-gnu/libc.so.6(+24083) (0x14606e60b083):__libc_start_main [??:??:0]
+/home/sx/NPB3.4.2/NPB3.4-MPI/bin/is.B.x(+1b7e) (0x558d99a41b7e):(null) [??:??:0]
+=== Event 47 ===
+Event Name: PROCESS_EXIT
+Start Time: 8441090614655319
+End Time: 8441090614655319
+Duration: 0
+Record Size: 26
