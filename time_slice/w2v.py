@@ -18,6 +18,6 @@ def get_vector(row):
         return [0] * dimension  
 
 data['feature_vector'] = data.apply(get_vector, axis=1)
-data.to_csv('is_vector.csv', header=True, index=False)
+data.to_csv('is_feature_vector.csv', header=True, index=False)
 
 # print(data['feature_vector'])
