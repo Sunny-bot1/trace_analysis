@@ -36,4 +36,4 @@ def process_csv(file_path):
 
 for file_name in os.listdir('data'):
     if file_name.endswith('.csv'):
-        process_csv(os.path.join('data', file_name))
+        process_csv(os.path.join('data/feature', file_name))
