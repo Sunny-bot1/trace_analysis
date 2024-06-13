@@ -133,6 +133,8 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                     total_loss, recon_loss, kl_loss = self.lstmed.loss_function(output, self.to_var(ts_batch.float()), mu, logvar, output_logvar)
                     valid_losses.append(total_loss.item())
                 valid_loss = np.average(valid_losses)
+                # if not hasattr(self,"loss_logs"):
+                #     self.loss_logs = {}
                 if 'valid_loss' in self.loss_logs:
                     self.loss_logs['valid_loss'].append(valid_loss)
                 else:
@@ -289,6 +291,9 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
         scores_sum = np.concatenate(scores_sum)
         scores_max = np.concatenate(scores_max)
         outputs = np.concatenate(outputs)
+
+        print(len(scores_sum))
+        print(scores_sum[0].shape)
 
 
         lattice = np.full((delay, len(sequences)+delay-1), np.nan)
