@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset, SubsetRandomSampler
 from torch.utils.data.sampler import SubsetRandomSampler
 from tqdm import trange,tqdm
 from torch_geometric.nn import GCNConv, GATConv
@@ -16,6 +16,18 @@ import matplotlib.pyplot as plt
 from algorithm_utils import Algorithm, PyTorchUtils
 from graphlstm import GraphLSTM
 from graphlstm_vae import GraphLSTM_VAE
+
+class SequenceDataset(Dataset):
+    def __init__(self, sequences, edge_indices):
+        self.sequences = sequences
+        self.edge_indices = edge_indices
+
+    def __len__(self):
+        return len(self.sequences)
+
+    def __getitem__(self, idx):
+        return self.sequences[idx], self.edge_indices[idx]
+
 
 class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
     def __init__(self, name: str='GraphLSTM_VAE_AD', num_epochs: int=10, batch_size: int=32, lr: float=1e-3,
@@ -42,18 +54,23 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
         self.lstmed = None
         #self.sscaler = StandardScaler()
 
-    def fit(self, X: pd.DataFrame, nodes_num: int, edge_index: list, log_step: int = 20, patience: int = 10, selected_indexes = None):
+    def fit(self, X: pd.DataFrame, nodes_num: int, edge_index: list, log_step: int = 20, patience: int = 10, selected_indexes = None, step: int = 1):
         X.interpolate(inplace=True)
         X.bfill(inplace=True)
         data = X.values
 
         #data = self.sscaler.fit_transform(data)
+        assert len(data) == len(edge_index), "data and edge_index list must have the same length."
 
         if selected_indexes is None:
             sequences = [data[i:i + self.sequence_length].reshape(self.sequence_length, nodes_num, -1) for i in range(data.shape[0] - self.sequence_length + 1)]
+            edge_sequences = [edge_index[i:i + self.sequence_length] for i in range(len(edge_index) - self.sequence_length + 1)]
+            # sequences = [data[i:i + self.sequence_length * step:step].reshape(self.sequence_length, nodes_num, -1) for i in range(data.shape[0] - self.sequence_length * step + 1)]
             #train_loader = DataLoader(dataset=sequences, batch_size=self.batch_size, drop_last=True,shuffle=True,pin_memory=True)
         else:
             sequences = [data[i:i + self.sequence_length].reshape(self.sequence_length, nodes_num, -1) for i in selected_indexes]
+            edge_sequences = [edge_index[i:i + self.sequence_length] for i in selected_indexes]
+            # sequences = [data[i:i + self.sequence_length * step:step].reshape(self.sequence_length, nodes_num, -1) for i in selected_indexes]
 
         indices = np.random.permutation(len(sequences))
         split_point = int(0.3 * len(sequences))
@@ -68,7 +85,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
         #self.lstmed.init_weights()
         self.to_device(self.lstmed)
         optimizer = torch.optim.Adam(self.lstmed.parameters(), lr=self.lr, weight_decay=1e-4)
-        edge_index = self.to_var(torch.tensor(edge_index, dtype=torch.long))
+        edge_sequences = self.to_var(torch.tensor(edge_sequences, dtype=torch.long))
         iters_per_epoch = len(train_loader)
         counter = 0
         best_val_loss = np.Inf
@@ -81,13 +98,13 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                 self.lstmed.train()
                 for (i,ts_batch) in enumerate(tqdm(train_loader)):
                     use_teacher_forcing = random.random() < teacher_forcing_ratio
-                    output, enc_hidden, mu, logvar, output_logvar = self.lstmed(self.to_var(ts_batch), edge_index, use_teacher_forcing)
+                    output, enc_hidden, mu, logvar, output_logvar = self.lstmed(self.to_var(ts_batch), edge_sequences[indices[i]], use_teacher_forcing)
                     total_loss, recon_loss, kl_loss = self.lstmed.loss_function(output, self.to_var(ts_batch.float()), mu, logvar, output_logvar)
 
                     loss = {}
                     loss['total_loss'] = total_loss.data.item()
-                    loss['recon_loss'] = recon_loss.data.item()
-                    loss['kl_loss'] = kl_loss.data.item()
+                    # loss['recon_loss'] = recon_loss.data.item()
+                    # loss['kl_loss'] = kl_loss.data.item()
 
                     self.lstmed.zero_grad()
                     total_loss.backward()
@@ -129,7 +146,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                 self.lstmed.eval()
                 valid_losses = []
                 for (i,ts_batch) in enumerate(tqdm(valid_loader)):
-                    output, enc_hidden, mu, logvar, output_logvar = self.lstmed(self.to_var(ts_batch), edge_index)
+                    output, enc_hidden, mu, logvar, output_logvar = self.lstmed(self.to_var(ts_batch), edge_sequences[indices[i]])
                     total_loss, recon_loss, kl_loss = self.lstmed.loss_function(output, self.to_var(ts_batch.float()), mu, logvar, output_logvar)
                     valid_losses.append(total_loss.item())
                 valid_loss = np.average(valid_losses)
@@ -157,7 +174,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                 self.lstmed.train()
                 for (i,ts_batch) in enumerate(tqdm(train_loader)):
                     use_teacher_forcing = random.random() < teacher_forcing_ratio
-                    output, enc_hidden = self.lstmed(self.to_var(ts_batch), edge_index, use_teacher_forcing)
+                    output, enc_hidden = self.lstmed(self.to_var(ts_batch), edge_sequences[indices[i]], use_teacher_forcing)
                     total_loss = self.lstmed.loss_function(output, self.to_var(ts_batch.float()))
 
                     loss = {}
@@ -203,7 +220,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                 self.lstmed.eval()
                 valid_losses = []
                 for (i,ts_batch) in enumerate(tqdm(valid_loader)):
-                    output, enc_hidden = self.lstmed(self.to_var(ts_batch), edge_index)
+                    output, enc_hidden = self.lstmed(self.to_var(ts_batch), edge_sequences[indices[i]])
                     total_loss = self.lstmed.loss_function(output, self.to_var(ts_batch.float()))
                     valid_losses.append(total_loss.item())
                 valid_loss = np.average(valid_losses)
@@ -232,14 +249,21 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
         self.lstmed.load_state_dict(torch.load(self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt'))
         self.to_device(self.lstmed)
         
-    def predict(self, X: pd.DataFrame, nodes_num: int, edge_index: list, sampling_num: int, delay: int = 5):
+    def predict(self, X: pd.DataFrame, nodes_num: int, edge_index: list, sampling_num: int, delay: int = 5, step: int = 10):
         X.interpolate(inplace=True)
         X.bfill(inplace=True)
         data = X.values
 
         #data = self.sscaler.transform(data)
 
+        # if selected_indexes is None:
+        #     sequences = [data[i:i + self.sequence_length * step:step].reshape(self.sequence_length, nodes_num, -1) for i in range(data.shape[0] - self.sequence_length * step + 1)]
+        #     #train_loader = DataLoader(dataset=sequences, batch_size=self.batch_size, drop_last=True,shuffle=True,pin_memory=True)
+        # else:
+        #     sequences = [data[i:i + self.sequence_length * step:step].reshape(self.sequence_length, nodes_num, -1) for i in selected_indexes]
+
         sequences = [data[i:i + self.sequence_length].reshape(self.sequence_length, nodes_num, -1) for i in range(data.shape[0] - self.sequence_length + 1)]
+        # sequences = [data[i:i + self.sequence_length * step:step].reshape(self.sequence_length, nodes_num, -1) for i in range(data.shape[0] - self.sequence_length * step + 1)]
         data_loader = DataLoader(dataset=sequences, batch_size=self.batch_size, shuffle=False, drop_last=False)
 
         self.lstmed.eval()
@@ -248,14 +272,17 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
 
         scores_sum = []
         scores_max = []
+        scores = []
         outputs = []
 
         with torch.no_grad():
             if self.variational:
                 for (i,ts_batch) in enumerate(tqdm(data_loader)):
 
+                    sample_scores = []
                     sample_scores_sum = []
                     sample_scores_max = []
+                    sample_scores = []
                     sample_outputs = []
 
                     for j in range(sampling_num):
@@ -263,15 +290,19 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
 
                         error_origin = torch.div((output - self.to_var(ts_batch.float())) ** 2, output_logvar.exp()) + output_logvar
 
+                        sample_score = torch.sum(error_origin, 3)
                         sample_score_sum = torch.sum(error_origin, (2,3))
                         sample_score_max = torch.max(torch.sum(error_origin, 3), 2).values
 
+                        sample_scores.append(sample_score)
                         sample_scores_sum.append(sample_score_sum)
                         sample_scores_max.append(sample_score_max)              
 
+                    score = torch.mean(torch.stack(sample_scores,2),2)
                     score_sum = torch.mean(torch.stack(sample_scores_sum,2),2)
                     score_max = torch.mean(torch.stack(sample_scores_max,2),2)
 
+                    scores.append(score.data.cpu().numpy())
                     scores_sum.append(score_sum.data.cpu().numpy())
                     scores_max.append(score_max.data.cpu().numpy())
                     outputs.append(enc_hidden.data.cpu().numpy())
@@ -288,13 +319,22 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                     scores_max.append(score_max.data.cpu().numpy())
                     outputs.append(enc_hidden.data.cpu().numpy())
 
+        scores = np.concatenate(scores)
         scores_sum = np.concatenate(scores_sum)
         scores_max = np.concatenate(scores_max)
         outputs = np.concatenate(outputs)
 
         print(len(scores_sum))
         print(scores_sum[0].shape)
+        print(len(scores))
+        print(scores[0].shape)
 
+
+        lattice = np.full((delay, len(sequences)+delay-1, nodes_num), np.nan)
+        for i, score in enumerate(scores):
+            for node in range(nodes_num):
+                lattice[i % delay, i:i + delay, node] = score[-delay:, node]
+        scores = np.nanmean(lattice, axis=0)
 
         lattice = np.full((delay, len(sequences)+delay-1), np.nan)
         for i, score in enumerate(scores_sum):
@@ -307,7 +347,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
         scores_max = np.nanmean(lattice, axis=0)
 
         #return scores begin from beginning+seq_len-delay
-        return scores_sum, scores_max, outputs
+        return scores, scores_sum, scores_max, outputs
 
     def interpret(self, X: pd.DataFrame, nodes_num: int, edge_index: list, sampling_num: int, delay: int = 5):
         X.interpolate(inplace=True)

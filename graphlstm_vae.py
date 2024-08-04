@@ -70,7 +70,7 @@ class GraphLSTM_VAE(nn.Module, PyTorchUtils):
         return mu + torch.randn_like(logvar) * torch.exp(logvar)
 
     def deal_batch(self, conv, x, edge_index):
-        batch = Batch.from_data_list([Data(x=x[i], edge_index=edge_index) for i in range(x.shape[0])])
+        batch = Batch.from_data_list([Data(x=x[i], edge_index=edge_index[i]) for i in range(x.shape[0])])
 
         output = conv(batch.x, batch.edge_index)
         output = output.reshape(x.shape[0],x.shape[1],-1)

@@ -360,7 +360,7 @@ class GraphLSTM(nn.Module, PyTorchUtils):
             for t in range(seq_len):
 
                 h, c = self.cell_list[layer_idx](input_tensor=cur_layer_input[t],
-                                                 edge_index = edge_index, cur_state=[h, c])
+                                                 edge_index = edge_index[t], cur_state=[h, c])
                 output_inner.append(h)
 
             layer_output = torch.stack(output_inner, dim=0)
