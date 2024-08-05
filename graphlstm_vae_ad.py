@@ -262,13 +262,17 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
         # else:
         #     sequences = [data[i:i + self.sequence_length * step:step].reshape(self.sequence_length, nodes_num, -1) for i in selected_indexes]
 
+        assert len(data) == len(edge_index), "data and edge_index list must have the same length."
+
+        edge_sequences = [edge_index[i:i + self.sequence_length] for i in range(len(edge_index) - self.sequence_length + 1)]
         sequences = [data[i:i + self.sequence_length].reshape(self.sequence_length, nodes_num, -1) for i in range(data.shape[0] - self.sequence_length + 1)]
         # sequences = [data[i:i + self.sequence_length * step:step].reshape(self.sequence_length, nodes_num, -1) for i in range(data.shape[0] - self.sequence_length * step + 1)]
         data_loader = DataLoader(dataset=sequences, batch_size=self.batch_size, shuffle=False, drop_last=False)
 
         self.lstmed.eval()
 
-        edge_index = self.to_var(torch.tensor(edge_index, dtype=torch.long))
+        # edge_index = self.to_var(torch.tensor(edge_index, dtype=torch.long))
+        edge_sequences = self.to_var(torch.tensor(edge_sequences, dtype=torch.long))
 
         scores_sum = []
         scores_max = []
@@ -286,7 +290,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                     sample_outputs = []
 
                     for j in range(sampling_num):
-                        output, enc_hidden, mu, logvar, output_logvar = self.lstmed(self.to_var(ts_batch), edge_index)
+                        output, enc_hidden, mu, logvar, output_logvar = self.lstmed(self.to_var(ts_batch), edge_sequences[i])
 
                         error_origin = torch.div((output - self.to_var(ts_batch.float())) ** 2, output_logvar.exp()) + output_logvar
 
@@ -309,7 +313,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
 
             else:
                 for (i,ts_batch) in enumerate(tqdm(data_loader)):
-                    output, enc_hidden = self.lstmed(self.to_var(ts_batch), edge_index)
+                    output, enc_hidden = self.lstmed(self.to_var(ts_batch), edge_sequences[i])
                     error_origin = nn.MSELoss(reduction = 'none')(output, self.to_var(ts_batch.float()))
 
                     score_sum = torch.sum(error_origin, (2,3))
