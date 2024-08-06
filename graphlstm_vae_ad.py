@@ -118,7 +118,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
 
                         for tag, value in loss.items():
                             log += ", {}: {:.4f}".format(tag, value)
-                        print(log)
+                        # print(log)
                     
                         plt_ctr = 1
                         if not hasattr(self,"loss_logs"):
@@ -140,7 +140,15 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                                 plt.subplot(2,2,plt_ctr)
                                 plt.plot(np.array(self.loss_logs['valid_loss']), label='valid_loss')
                                 plt.legend()
-                                print("valid_loss:", self.loss_logs['valid_loss'])
+                                # print("valid_loss:", self.loss_logs['valid_loss'])
+                        plt.savefig('/root/MPI_profile/train_log/'
+                                    + self.name
+                                    # + 'seq=' + str(self.sequence_length)
+                                    # + '_lr=' + str(self.lr)
+                                    # + '_bsz=' + str(self.batch_size)
+                                    # + '_hdim=' + str(self.hidden_dim)
+                                    # + '_epoch=' + str(self.num_epochs)
+                                    + '_train.png')
                         plt.show()
                 
                 self.lstmed.eval()
@@ -160,13 +168,13 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                 if valid_loss < best_val_loss:
                     best_val_loss = valid_loss
                     teacher_forcing_ratio -= 1.0/self.num_epochs
-                    torch.save(self.lstmed.state_dict(), self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt')
+                    torch.save(self.lstmed.state_dict(), 'new_checkpoints/'+self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt')
                     counter = 0
                 else:
                     counter += 1
                     teacher_forcing_ratio *= 0.5
                     if counter >= patience:
-                        self.lstmed.load_state_dict(torch.load(self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt'))
+                        self.lstmed.load_state_dict(torch.load('new_checkpoints/'+self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt'))
                         break          
         else:
             for epoch in trange(self.num_epochs):
@@ -192,7 +200,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
 
                         for tag, value in loss.items():
                             log += ", {}: {:.4f}".format(tag, value)
-                        print(log)
+                        # print(log)
                     
                         plt_ctr = 1
                         if not hasattr(self,"loss_logs"):
@@ -214,7 +222,7 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                                 plt.subplot(2,2,plt_ctr)
                                 plt.plot(np.array(self.loss_logs['valid_loss']), label='valid_loss')
                                 plt.legend()
-                                print("valid_loss:", self.loss_logs['valid_loss'])
+                                # print("valid_loss:", self.loss_logs['valid_loss'])
                         plt.show()
 
                 self.lstmed.eval()
@@ -239,14 +247,14 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
                     teacher_forcing_ratio *= 0.5
                     if counter >= patience:
                         print ("early stoppong")
-                        self.lstmed.load_state_dict(torch.load(self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt'))
+                        self.lstmed.load_state_dict(torch.load('new_checkpoints/'+ self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt'))
                         break
     
     def load(self, nodes_num, X_shape):
         self.lstmed = GraphLSTM_VAE(nodes_num, X_shape//nodes_num, self.hidden_dim,
                                     num_layers=self.num_layers, head=self.head, dropout=self.dropout, kind=self.kind,
                                     bias=self.bias, variational=self.variational, seed=self.seed, gpu=self.gpu)
-        self.lstmed.load_state_dict(torch.load(self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt'))
+        self.lstmed.load_state_dict(torch.load('new_checkpoints/'+ self.name+'_'+self.kind+str(self.gpu)+'_'+'checkpoint.pt'))
         self.to_device(self.lstmed)
         
     def predict(self, X: pd.DataFrame, nodes_num: int, edge_index: list, sampling_num: int, delay: int = 5, step: int = 10):
@@ -328,10 +336,10 @@ class GraphLSTM_VAE_AD(Algorithm, PyTorchUtils):
         scores_max = np.concatenate(scores_max)
         outputs = np.concatenate(outputs)
 
-        print(len(scores_sum))
-        print(scores_sum[0].shape)
-        print(len(scores))
-        print(scores[0].shape)
+        # print(len(scores_sum))
+        # print(scores_sum[0].shape)
+        # print(len(scores))
+        # print(scores[0].shape)
 
 
         lattice = np.full((delay, len(sequences)+delay-1, nodes_num), np.nan)
