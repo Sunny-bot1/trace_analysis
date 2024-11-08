@@ -40,7 +40,7 @@ class GCNLSTMCell(nn.Module, PyTorchUtils):
                              bias=self.bias,
                              improved = True)
 
-    def forward(self, input_tensor, cur_state, edge_index):
+    def forward(self, input_tensor, cur_state, edge_index, edge_weight):
         '''
         input_tensor:(b,n,i)
         cur_state:[(b,n,h),(b,n,h)]
@@ -48,9 +48,9 @@ class GCNLSTMCell(nn.Module, PyTorchUtils):
         h_cur, c_cur = cur_state
         
         combined = torch.cat([input_tensor, h_cur], dim=2)  # concatenate along hidden axis
-        batch = Batch.from_data_list([Data(x=combined[i], edge_index=edge_index) for i in range(combined.shape[0])])
+        batch = Batch.from_data_list([Data(x=combined[i], edge_index=edge_index, edge_weight=edge_weight) for i in range(combined.shape[0])])
         
-        combined_conv = self.gconv(batch.x, batch.edge_index)
+        combined_conv = self.gconv(batch.x, batch.edge_index, batch.edge_weight)
         combined_conv = combined_conv.reshape(combined.shape[0],combined.shape[1],-1)
 
         cc_i, cc_f, cc_o, cc_g = torch.split(combined_conv, self.hidden_dim, dim=2) 
@@ -321,7 +321,7 @@ class GraphLSTM(nn.Module, PyTorchUtils):
 
         self.cell_list = nn.ModuleList(cell_list)
 
-    def forward(self, input_tensor, edge_index, hidden_state=None):
+    def forward(self, input_tensor, edge_index, edge_weight, hidden_state=None):
         """
         
         Parameters
@@ -360,7 +360,7 @@ class GraphLSTM(nn.Module, PyTorchUtils):
             for t in range(seq_len):
 
                 h, c = self.cell_list[layer_idx](input_tensor=cur_layer_input[t],
-                                                 edge_index = edge_index[t], cur_state=[h, c])
+                                                 edge_index = edge_index[t], edge_weight=edge_weight[t], cur_state=[h, c])
                 output_inner.append(h)
 
             layer_output = torch.stack(output_inner, dim=0)

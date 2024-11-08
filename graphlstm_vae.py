@@ -69,10 +69,10 @@ class GraphLSTM_VAE(nn.Module, PyTorchUtils):
     def reparametrize(self, mu, logvar):
         return mu + torch.randn_like(logvar) * torch.exp(logvar)
 
-    def deal_batch(self, conv, x, edge_index):
-        batch = Batch.from_data_list([Data(x=x[i], edge_index=edge_index[i]) for i in range(x.shape[0])])
+    def deal_batch(self, conv, x, edge_index, edge_weight):
+        batch = Batch.from_data_list([Data(x=x[i], edge_index=edge_index[i], edge_weight=edge_weight[i]) for i in range(x.shape[0])])
 
-        output = conv(batch.x, batch.edge_index)
+        output = conv(batch.x, batch.edge_index, batch.edge_weight)
         output = output.reshape(x.shape[0],x.shape[1],-1)
 
         return output
@@ -85,13 +85,13 @@ class GraphLSTM_VAE(nn.Module, PyTorchUtils):
             outputs.append(output)        
         return torch.stack(outputs, 1)
 
-    def forward(self, ts_batch, edge_index, use_teacher_forcing = True):
+    def forward(self, ts_batch, edge_index, edge_weight, use_teacher_forcing = True):
         if self.batch_first:
             # (b, t, n, c) -> (t, b, n, c)
             ts_batch = ts_batch.permute(1, 0, 2, 3).contiguous()
         
         # 1. Encode the timeseries to make use of the last hidden state.
-        _, enc_hidden0 = self.encoder(ts_batch.float(), edge_index)  # .float() here or .double() for the model
+        _, enc_hidden0 = self.encoder(ts_batch.float(), edge_index, edge_weight)  # .float() here or .double() for the model
 
         enc_hidden = enc_hidden0[-1][0]
         # 2. Use hidden state as initialization for our Decoder-LSTM
@@ -115,18 +115,18 @@ class GraphLSTM_VAE(nn.Module, PyTorchUtils):
             #    * Use hidden2output for prediction
             for i in reversed(range(ts_batch.shape[0]-1)):
                 if self.training and use_teacher_forcing:
-                    _, dec_hidden = self.decoder(ts_batch[i+1].unsqueeze(0).float(), edge_index, dec_hidden)
+                    _, dec_hidden = self.decoder(ts_batch[i+1].unsqueeze(0).float(), edge_index, edge_weight, dec_hidden)
                     #print(dec_hidden[0][0].size())
                 else:
-                    _, dec_hidden = self.decoder(output[i+1].unsqueeze(0), edge_index, dec_hidden)
+                    _, dec_hidden = self.decoder(output[i+1].unsqueeze(0), edge_index, edge_weight, dec_hidden)
                 output[i] = self.deal_list(self.hidden2output, dec_hidden[-1][0])#self.hidden2output(dec_hidden[-1][0])#self.deal_batch(self.hidden2output, dec_hidden[-1][0], edge_index)#self.hidden2output(dec_hidden[-1][0], edge_index)
                 output_logvar[i] = self.deal_list(self.hidden2output_logvar, dec_hidden[-1][0])#self.hidden2output_logvar(dec_hidden[-1][0])#self.deal_batch(self.hidden2output_logvar, dec_hidden[-1][0], edge_index)
         else:
             for i in reversed(range(ts_batch.shape[0]-1)):
                 if self.training and use_teacher_forcing:
-                    _, dec_hidden = self.decoder(ts_batch[i+1].unsqueeze(0).float(), edge_index, dec_hidden)
+                    _, dec_hidden = self.decoder(ts_batch[i+1].unsqueeze(0).float(), edge_index, edge_weight, dec_hidden)
                 else:
-                    _, dec_hidden = self.decoder(output[i+1].unsqueeze(0), edge_index, dec_hidden)
+                    _, dec_hidden = self.decoder(output[i+1].unsqueeze(0), edge_index, edge_weight, dec_hidden)
                 output[i] = self.deal_list(self.hidden2output, dec_hidden[-1][0])#self.hidden2output(dec_hidden[-1][0])#self.deal_batch(self.hidden2output, dec_hidden[-1][0], edge_index)#self.hidden2output(dec_hidden[-1][0], edge_index)
 
         return (output.permute(1, 0, 2, 3).contiguous(), enc_hidden, mu, logvar, output_logvar.permute(1, 0, 2, 3).contiguous()) if self.variational else (output.permute(1, 0, 2, 3).contiguous(), enc_hidden)

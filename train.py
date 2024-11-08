@@ -13,7 +13,7 @@ parser.add_argument('-s', '--seq', type=int, default=30, help='seq')
 parser.add_argument('-l', '--lr', type=float, default=1e-3, help='lr')
 parser.add_argument('-b', '--bsz', type=int, default=32, help='bsz')
 parser.add_argument('-hd', '--hdim', type=int,default=8, help='hdim')
-parser.add_argument('-e', '--epoch', type=int,default=1000, help='epoch')
+parser.add_argument('-e', '--epoch', type=int,default=200, help='epoch')
 args = parser.parse_args()
 
 process = args.program
@@ -37,19 +37,20 @@ print(process + "_" + duration
 # process = "lammps_48_normal"
 # duration = "100ms_closed"
 # node_num = 48
-DATASET = "/root/MPI_profile/"+ process + "/" + duration + "/node_feature.csv"
-TOPOLOGY = "/root/MPI_profile/"+ process + "/" + duration + "/graph_edge"
+DATASET = "/home/sx/MPI_profile/"+ process + "/" + duration + "/node_feature.csv"
+TOPOLOGY = "/home/sx/MPI_profile/"+ process + "/" + duration + "/graph_edge"
 
 def edge_load(filename, len):
     edge_data = pd.read_csv(filename, header=0)
-    edge_data = edge_data.groupby(['ts_id','src', 'dst']).agg({'commsize': 'sum'}).reset_index()
+    edge_data['freq'] = edge_data.groupby(['ts_id', 'src', 'dst'])['ts_id'].transform('count')
+    edge_data = edge_data.drop_duplicates(subset=['ts_id', 'src', 'dst', 'freq'])
     edge_index_dict = {}
     edge_weight_dict = {}
     for ts_id, group in edge_data.groupby('ts_id'):
         edge_index = group[['src', 'dst']].values.T.tolist()  # Transpose to get shape (2, num_edges)
         edge_index_dict[ts_id] = edge_index
 
-        edge_weight = group['commsize'].values.tolist()
+        edge_weight = group['freq'].values.tolist()
         edge_weight_dict[ts_id] = edge_weight
 
     edge_index_list = []
@@ -88,7 +89,7 @@ model = GraphLSTM_VAE_AD(name=process + '_' + duration
                         kind='GCN', gpu=args.gpu,  sequence_length=args.seq, hidden_dim=args.hdim, batch_size=args.bsz, lr=args.lr, num_epochs=num_epochs)
 
 print("training...")
-model.fit(metric, node_num, edge_index, log_step=2, patience=20, step=10)
+model.fit(metric, node_num, edge_index, edge_weight, log_step=2, patience=20, step=10)
 
 print("predicting...")
 model.load(node_num, metric.shape[1])
@@ -96,7 +97,7 @@ scores_sum = []
 scores_max = []
 scores = []
 outputs = []
-scores, scores_sum, scores_max, outputs = model.predict(metric, node_num, edge_index, 1)
+scores, scores_sum, scores_max, outputs = model.predict(metric, node_num, edge_index, edge_weight, 1)
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -106,7 +107,7 @@ import seaborn as sns
 shuffle_scores = scores
 shuffle_scores = shuffle_scores.T
 
-plt.figure(figsize=(40, 10))
+plt.figure(figsize=(10, 4))
 
 sns.heatmap(shuffle_scores, cmap='Blues', cbar=True)
 
@@ -114,13 +115,10 @@ plt.title('Heatmap of Scores', fontsize=12)
 plt.xlabel('Trace Slices', fontsize=12)
 plt.ylabel('Nodes', fontsize=12)
 
-plt.savefig('/root/MPI_profile/train_log/' + process + "_" + duration
+plt.savefig('/home/sx/MPI_profile/heatmap/' + process + "_" + duration
             + '_seq=' + str(args.seq)
             + '_lr=' + str(args.lr)
             + '_bsz=' + str(args.bsz)
             + '_hdim=' + str(args.hdim)
             + '_epoch=' + str(num_epochs) + '_score.png', bbox_inches='tight')
 plt.show()
-
-
-
