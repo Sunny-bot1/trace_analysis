@@ -42,9 +42,10 @@ echo "Interval: ${INTERVAL}ms"
 echo "Duration: $(( DURATION * 2500000 ))"
 echo "Interval: $(( INTERVAL * 2500000 ))"
 
-mkdir ${TRACE_DIR}/${INPUT}
 mkdir ${OUTPUT_DIR}
 
-# timeslice_analysis -i ${INPUT_DIR}/trace -f -o ${OUTPUT_DIR}/graph -d /home/sx/MPI_profile/lulesh_8_abnormal/lulesh_lineinfo -l $((INTERVAL * 2500000 )) -u $(( DURATION * 2500000 ))
-# timeslice_analysis -i ${INPUT_DIR}/trace -f -o ${OUTPUT_DIR}/graph_edge -d /home/sx/MPI_profile/lulesh_8_abnormal/lulesh_lineinfo -l $(( INTERVAL * 2500000 )) -u $(( DURATION * 2500000 )) -e
+
+timeslice_analysis -i ${INPUT_DIR}/trace -f -o ${OUTPUT_DIR}/graph -d ${INPUT_DIR}/lineinfo -l $((INTERVAL * 2500000 )) -u $(( DURATION * 2500000 ))
+timeslice_analysis -i ${INPUT_DIR}/trace -f -o ${OUTPUT_DIR}/graph_edge -d ${INPUT_DIR}/lineinfo -l $(( INTERVAL * 2500000 )) -u $(( DURATION * 2500000 )) -e
+
 # timeslice_analysis -i ${INPUT_DIR}/trace -f -o /home/xzb/data-stad/backtrace/lammps_1024_backtrace -d /home/xzb/MPI_profile/lmp_lineinfo -s /home/xzb/MPI_profile/lammps_1024_abnormal_inject/lammps_1024_abnormal_inject_indices.txt -l $(( INTERVAL * 2500000 )) -u $(( DURATION * 2500000 )) -b
